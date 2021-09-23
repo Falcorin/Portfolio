@@ -1,6 +1,9 @@
 package com.web.social.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +14,9 @@ import java.util.Set;
 @Entity
 @Table(name = "usr")
 @Data
+@RequiredArgsConstructor
+@Setter
+@Getter
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
