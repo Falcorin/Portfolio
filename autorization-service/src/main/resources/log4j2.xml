@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG" packages="application">
+
+    <Properties>
+        <Property name="LOG_PATTERN_CONSOLE">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %highlight{%-5level}{FATAL=bg_red,
+            ERROR=red, WARN=yellow, INFO=green} %logger{36} - %msg%n
+        </Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="APP_LOG_ROOT">logs</Property>
+        <Property name="SCHEDULE">0 0 1/12 * * ?</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <LevelRangeFilter minLevel="ERROR" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN_CONSOLE}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+
+        <Logger name="application" additivity="false" level="debug" includeLocation="true">
+            <!--            <AppenderRef ref="debugLog" level="debug"/>-->
+            <AppenderRef ref="errorLog" level="error"/>
+            <AppenderRef ref="infoLog" level="info"/>
+            <AppenderRef ref="rewrite" level="debug"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+    </Loggers>
+</Configuration>
